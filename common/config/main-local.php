@@ -6,7 +6,7 @@ return [
             'class' => 'yii\db\Connection',
             'dsn' => 'mysql:host=localhost;dbname=yii2_web_uten;port=3306',
             'username' => 'root',
-            'password' => '',
+            'password' => '2515',
             'charset' => 'utf8',
         ],
         'db_hdc' => [
