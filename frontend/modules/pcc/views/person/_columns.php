@@ -24,7 +24,7 @@ return [
          },
          'filter'=>['green'=>'green','yellow'=>'yellow'],
          'value'=>function($model){
-              return Html::a('<i class="glyphicon glyphicon-search"></i>',['/pcc/visit/index','id'=>$model->id],['class'=>'btn btn-default btn-sm']);            
+              return Html::a('<i class="glyphicon glyphicon-search"></i>',['/pcc/visit/index','pid'=>$model->id],['class'=>'btn btn-default btn-sm']);            
          }
     ],
     [

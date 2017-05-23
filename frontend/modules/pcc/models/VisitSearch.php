@@ -10,13 +10,12 @@ use frontend\modules\pcc\models\Visit;
 /**
  * VisitSearch represents the model behind the search form about `frontend\modules\pcc\models\Visit`.
  */
-class VisitSearch extends Visit
-{
+class VisitSearch extends Visit {
+
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['id', 'person_id', 'height', 'sbp', 'dbp'], 'integer'],
             [['date_visit', 'note', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'safe'],
@@ -27,8 +26,7 @@ class VisitSearch extends Visit
     /**
      * @inheritdoc
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -40,8 +38,7 @@ class VisitSearch extends Visit
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = Visit::find();
 
         // add conditions that should always apply here
@@ -65,16 +62,18 @@ class VisitSearch extends Visit
             'date_visit' => $this->date_visit,
             'weight' => $this->weight,
             'height' => $this->height,
-            'sbp' => $this->sbp,
-            'dbp' => $this->dbp,
+       //     'sbp' => $this->sbp,
+       //     'dbp' => $this->dbp,
         ]);
 
         $query->andFilterWhere(['like', 'note', $this->note])
-            ->andFilterWhere(['like', 'created_by', $this->created_by])
-            ->andFilterWhere(['like', 'updated_by', $this->updated_by])
-            ->andFilterWhere(['like', 'created_at', $this->created_at])
-            ->andFilterWhere(['like', 'updated_at', $this->updated_at]);
+                ->andFilterWhere(['like', 'created_by', $this->created_by])
+                ->andFilterWhere(['like', 'updated_by', $this->updated_by])
+                ->andFilterWhere(['like', 'created_at', $this->created_at])
+                ->andFilterWhere(['like', 'concat("sbp","dbp")', $this->sbp])
+                ->andFilterWhere(['like', 'updated_at', $this->updated_at]);
 
         return $dataProvider;
     }
+
 }

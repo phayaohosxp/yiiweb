@@ -3,12 +3,12 @@
 namespace frontend\modules\pcc\models;
 
 use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 class Visit extends \yii\db\ActiveRecord {
 
-    /**
-     * @inheritdoc
-     */
     public static function tableName() {
         return 'visit';
     }
@@ -42,6 +42,16 @@ class Visit extends \yii\db\ActiveRecord {
             'updated_by' => 'Updated By',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+        ];
+    }
+
+    public function behaviors() {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'value' => new Expression('NOW()'),
+            ],
+            ['class' => BlameableBehavior::className()]
         ];
     }
 

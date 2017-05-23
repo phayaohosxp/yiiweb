@@ -8,7 +8,8 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Visits';
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label'=>'ทะเบียน','url'=> ['/pcc/person/index']];
+$this->params['breadcrumbs'][] = 'รายการเยี่ยม';
 ?>
 <div class="visit-index">
 
@@ -16,28 +17,33 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Visit', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('เยียม', ['create','pid'=>$pid], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= GridView::widget([
+    <?=
+    GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'person_id',
+            //  'id',
+           // 'person_id',
             'date_visit',
             'weight',
             'height',
-            // 'sbp',
-            // 'dbp',
-            // 'note',
+            [
+                'attribute' => 'sbp',
+                'value' => function($model) {
+                    return $model->sbp . "/" . $model->dbp;
+                }
+            ],
+            //  'dbp',
+            'note',
             // 'created_by',
             // 'updated_by',
             // 'created_at',
             // 'updated_at',
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]);
+    ?>
 </div>

@@ -2,9 +2,7 @@
 
 use yii\helpers\Html;
 
-
-/* @var $this yii\web\View */
-/* @var $model frontend\modules\pcc\models\Visit */
+ 
 
 $this->title = 'Create Visit';
 $this->params['breadcrumbs'][] = ['label' => 'Visits', 'url' => ['index']];
@@ -16,6 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'pid' => $pid,
     ]) ?>
 
 </div>
