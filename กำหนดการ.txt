@@ -1,0 +1,35 @@
+DAY-1
+    เช้า
+        - โครงสร้างไดเรคทอรี่
+        - Array
+        - Routing , Links 
+        - Model View Controller (MVC) ,
+        - Module
+        - Gii CRUD,AJAX-CRUD
+        
+    บ่าย   
+        - Form and Widget , Verify Code ,Upload File
+        - GridView and Customize
+        
+
+=======================================================     
+DAY-2
+    เช้า
+        - USER and RBAC
+        - DAO 
+        - Custom  Model from Query
+        
+    บ่าย       
+        - Chart 
+        - Excel Report Template
+        - custom components
+        - Line notify    
+
+======================================================= 
+DAY-3
+    เช้า
+        - QGIS
+        - GIS (Map)
+    
+       
+    
