@@ -32,7 +32,7 @@ return [
             'enableConfirmation' => true,
             'confirmWithin' => 21600,
             'cost' => 12,
-            'admins' => ['admin']
+            'admins' => ['admin','phayaohosxp']
         ],
         'orm' => [
             'class' => 'frontend\modules\orm\Orm',
