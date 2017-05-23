@@ -5,12 +5,12 @@ namespace frontend\modules\pcc\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\modules\pcc\models\Person;
+use frontend\modules\pcc\models\Visit;
 
 /**
- * PersonSearch represents the model behind the search form about `frontend\modules\pcc\models\Person`.
+ * VisitSearch represents the model behind the search form about `frontend\modules\pcc\models\Visit`.
  */
-class PersonSearch extends Person
+class VisitSearch extends Visit
 {
     /**
      * @inheritdoc
@@ -18,8 +18,9 @@ class PersonSearch extends Person
     public function rules()
     {
         return [
-            [['id', 'age'], 'integer'],
-            [['prename', 'name', 'lname', 'birth', 'addr', 'moo', 'prov_code', 'amp_code', 'tmb_code', 'lat', 'lon', 'rapid', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'person_id', 'height', 'sbp', 'dbp'], 'integer'],
+            [['date_visit', 'note', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'safe'],
+            [['weight'], 'number'],
         ];
     }
 
@@ -41,10 +42,9 @@ class PersonSearch extends Person
      */
     public function search($params)
     {
-        $query = Person::find();
-        $query->joinWith('province')
-                ->joinWith('ampur')
-                ->joinWith('tambon');
+        $query = Visit::find();
+
+        // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -58,23 +58,18 @@ class PersonSearch extends Person
             return $dataProvider;
         }
 
+        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'birth' => $this->birth,
-            'age' => $this->age,
+            'person_id' => $this->person_id,
+            'date_visit' => $this->date_visit,
+            'weight' => $this->weight,
+            'height' => $this->height,
+            'sbp' => $this->sbp,
+            'dbp' => $this->dbp,
         ]);
 
-        $query->andFilterWhere(['like', 'prename', $this->prename])
-            ->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'lname', $this->lname])
-            ->andFilterWhere(['like', 'addr', $this->addr])
-            ->andFilterWhere(['like', 'moo', $this->moo])
-            ->andFilterWhere(['like', 'c_province.changwatname', $this->prov_code])
-            ->andFilterWhere(['like', 'amp_code', $this->amp_code])
-            ->andFilterWhere(['like', 'tmb_code', $this->tmb_code])
-            ->andFilterWhere(['like', 'lat', $this->lat])
-            ->andFilterWhere(['like', 'lon', $this->lon])
-            ->andFilterWhere(['like', 'rapid', $this->rapid])
+        $query->andFilterWhere(['like', 'note', $this->note])
             ->andFilterWhere(['like', 'created_by', $this->created_by])
             ->andFilterWhere(['like', 'updated_by', $this->updated_by])
             ->andFilterWhere(['like', 'created_at', $this->created_at])

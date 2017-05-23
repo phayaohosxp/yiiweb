@@ -89,7 +89,7 @@ class PersonController extends Controller {
             Yii::$app->response->format = Response::FORMAT_JSON;
             if ($request->isGet) {
                 return [
-                    'title' => "Create new Person",
+                    'title' => "ขึ้นทะเบียนผู้ป่วย",
                     'content' => $this->renderAjax('create', [
                         'model' => $model,
                     ]),

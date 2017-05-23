@@ -38,7 +38,7 @@ CrudAsset::register($this);
             'condensed' => true,
             'responsive' => true,          
             'panel' => [
-                'type' => 'primary', 
+                'type' => 'success', 
                 'heading' => '<i class="glyphicon glyphicon-list"></i> People listing',
                 'before'=>'<em>* Resize table columns just like a spreadsheet by dragging the column edges.</em>',
                 'after'=>BulkButtonWidget::widget([
@@ -59,8 +59,8 @@ CrudAsset::register($this);
     </div>
 </div>
 <?php Modal::begin([
-    "id"=>"ajaxCrudModal",
+    "id"=>"ajaxCrudModal",   
     "footer"=>"",// always need it for jquery plugin
-    "size" => "modal-lg"
+    'size'=>'modal-lg',
 ])?>
 <?php Modal::end(); ?>

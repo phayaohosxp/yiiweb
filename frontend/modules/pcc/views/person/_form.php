@@ -23,32 +23,38 @@ use yii\helpers\Url;
         'นางสาว' => 'นางสาว'
     ];
     ?>
+    <div class="form-group">
+        <div class="col-md-3">
+            <?=
+            $form->field($model, 'prename')->dropDownList($item, [
+                'prompt' => '---เลือก---'
+            ])
+            ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+        </div>
 
-    <?=
-    $form->field($model, 'prename')->dropDownList($item, [
-        'prompt' => '---เลือก---'
-    ])
-    ?>
-
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'lname')->textInput(['maxlength' => true]) ?>
-
-    <?=
-    $form->field($model, 'birth')->widget(DatePicker::classname(), [
-        'options' => ['placeholder' => 'วดป.เกิด...'],
-        'pickerButton' => [
-            'icon' => 'calendar',
-        ],
-        'language' => 'th',
-        'pluginOptions' => [
-            'autoclose' => true,
-            'format' => 'yyyy-mm-dd',
-            'todayHighlight' => true
-        ]
-    ])
-    ?>
-
+        <div class="col-md-3">
+            <?= $form->field($model, 'lname')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-md-3">
+            <?=
+            $form->field($model, 'birth')->widget(DatePicker::classname(), [
+                'options' => ['placeholder' => 'วดป.เกิด...'],
+                'pickerButton' => [
+                    'icon' => 'calendar',
+                ],
+                'language' => 'th',
+                'pluginOptions' => [
+                    'autoclose' => true,
+                    'format' => 'yyyy-mm-dd',
+                    'todayHighlight' => true
+                ]
+            ])
+            ?>
+        </div>
+    </div>
     <?= $form->field($model, 'addr')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'moo')->textInput(['maxlength' => true]) ?>
@@ -88,9 +94,10 @@ use yii\helpers\Url;
     <?= $form->field($model, 'lat')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'lon')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'rapid')->textInput(['maxlength' => true]) ?>
-
+    <?php
+    $items = ['green' => 'green', 'yellow' => 'yellow', 'red' => 'red'];
+    ?>
+    <?= $form->field($model, 'rapid')->dropDownList($items); ?>
 
 
     <?php if (!Yii::$app->request->isAjax) { ?>

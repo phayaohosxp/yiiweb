@@ -18,7 +18,9 @@ use yii\widgets\DetailView;
             'age',
             'addr',
             'moo',
-            'prov_code',
+           
+              'province.changwatname',
+            
             'amp_code',
             'tmb_code',
             'lat',
