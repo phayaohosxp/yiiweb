@@ -7,8 +7,12 @@ use yii\helpers\Html;
 ?>
 <div class="person-update">
 
-    <?= $this->render('_form', [
+    <?=
+    $this->render('_form', [
         'model' => $model,
-    ]) ?>
+        'amp' => $amp,
+        'tmb' => $tmb
+    ])
+    ?>
 
 </div>

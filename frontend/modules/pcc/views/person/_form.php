@@ -4,26 +4,32 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\widgets\DatePicker;
 use frontend\modules\pcc\models\Province;
-use frontend\modules\pcc\models\Ampur;
-use frontend\modules\pcc\models\Tambon;
 use yii\helpers\ArrayHelper;
-use kartik\widgets\Select2;
+use kartik\widgets\DepDrop;
+use yii\helpers\Url;
+
+/* @var $this yii\web\View */
+/* @var $model frontend\modules\pcc\models\Person */
+/* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="person-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
     <?php
-    $items = [
-        'นาง' => 'นาง',
+    $item = [
         'นาย' => 'นาย',
-        'นางสาว' => 'นางสาว'];
+        'นาง' => 'นาง',
+        'นางสาว' => 'นางสาว'
+    ];
     ?>
 
     <?=
-    $form->field($model, 'prename')->dropDownList($items, ['prompt' => '--โปรดเลือก--'])
+    $form->field($model, 'prename')->dropDownList($item, [
+        'prompt' => '---เลือก---'
+    ])
     ?>
+
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'lname')->textInput(['maxlength' => true]) ?>
@@ -51,32 +57,33 @@ use kartik\widgets\Select2;
     $array = Province::find()
             ->where(['zonecode' => '01'])
             ->all();
-    $item = ArrayHelper::map($array, 'changwatcode', 'changwatname');
+    $items = ArrayHelper::map($array, 'changwatcode', 'changwatname');
+    echo $form->field($model, 'prov_code')->dropDownList($items, ['id' => 'prov_code', 'prompt' => 'เลือก...'])
     ?>
 
-    <?=
-    $form->field($model, 'prov_code')->widget(Select2::classname(), [
-        'data' => $item,
-        'language' => 'th',
-        'options' => ['placeholder' => ' จังหวัด...'],
+    <?php
+    echo $form->field($model, 'amp_code')->widget(DepDrop::classname(), [
+        'data' => !empty($amp) ? $amp : [],
+        'options' => ['id' => 'amp_code'],
         'pluginOptions' => [
-            'allowClear' => true
-        ],
+            'depends' => ['prov_code'],
+            'placeholder' => 'เลือก...',
+            'url' => Url::to(['/pcc/default/getamp'])
+        ]
     ]);
     ?>
 
     <?php
-    $x = $model['prov_code'];
-    $array2 = Ampur::find()
-            ->where(['changwatcode' => '$x'])
-            ->all();
-    $item2 = ArrayHelper::map($array2, 'ampurcodefull', 'ampurname');
+    echo $form->field($model, 'tmb_code')->widget(DepDrop::classname(), [
+        'data' => !empty($tmb) ? $tmb : [],
+        'options' => ['id' => 'tmb_code'],
+        'pluginOptions' => [
+            'depends' => ['amp_code'],
+            'placeholder' => 'เลือก...',
+            'url' => Url::to(['/pcc/default/gettmb'])
+        ]
+    ]);
     ?>
-
-    <?= $form->field($model, 'amp_code')->textInput(['maxlength' => true]) ?>
-
-
-    <?= $form->field($model, 'tmb_code')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'lat')->textInput(['maxlength' => true]) ?>
 
@@ -88,7 +95,7 @@ use kartik\widgets\Select2;
 
     <?php if (!Yii::$app->request->isAjax) { ?>
         <div class="form-group">
-            <?= Html::submitButton($model->isNewRecord ? '<i glyphicon glyphicon-ok ></i> เพิ่ม' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            <?= Html::submitButton($model->isNewRecord ? 'เพิ่ม' : 'บันทึก', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         </div>
     <?php } ?>
 
