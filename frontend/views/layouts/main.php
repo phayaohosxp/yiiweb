@@ -22,6 +22,16 @@ AppAsset::register($this);
         <?php $this->head() ?>
     </head>
     <body>
+        <link href="https://fonts.googleapis.com/css?family=Prompt:300" rel="stylesheet"> 
+        <style>
+            body {
+                font-family: 'Prompt', sans-serif;
+                font-size: 16px;
+            }
+            h1 {
+                font-family: 'Prompt', sans-serif;
+            }
+        </style>
         <?php $this->beginBody() ?>
 
         <div class="wrap">
@@ -93,7 +103,7 @@ AppAsset::register($this);
             <div class="container">
                 <?= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []]) ?>
                 <?= Alert::widget() ?>
-                
+
                 <?= $content ?>
             </div>
         </div>

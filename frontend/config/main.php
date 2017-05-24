@@ -9,8 +9,6 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
-    
-    
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
@@ -37,14 +35,14 @@ return [
             'errorAction' => 'site/error',
         ],
         /*
-          'view' => [
-          'theme' => [
-          'pathMap' => [
-          '@frontend/views' => '@frontend/themes/adminlte'
-          ],
-          ],
-          ],
-         */
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@frontend/views' => '@frontend/themes/adminlte'
+                ],
+            ],
+        ],
+        */
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
