@@ -22,7 +22,8 @@ AppAsset::register($this);
         <?php $this->head() ?>
     </head>
     <body>
-        <link href="https://fonts.googleapis.com/css?family=Prompt:300" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css?family=Prompt:300" 
+              rel="stylesheet"> 
         <style>
             body {
                 font-family: 'Prompt', sans-serif;
