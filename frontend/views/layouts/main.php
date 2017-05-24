@@ -49,6 +49,7 @@ AppAsset::register($this);
                 ['label' => 'DHDC', 'url' => ['/site/about']],
                 ['label' => 'Audit', 'url' => ['/site/contact']],
                 ['label' => 'PERSON', 'url' => ['/pcc/person']],
+                 ['label' => 'แผนที่', 'url' => ['/pcc/map']],
                 [
                     'label' => 'รายงาน 1',
                     'items' => [

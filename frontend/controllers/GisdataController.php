@@ -12,7 +12,7 @@ class GisdataController extends Controller {
 
     protected function addRecord($prov, $amp, $tam, $namt, $name, $coord) {
         
-        $sql = " REPLACE INTO gis_dhdc (PROV_CODE,AMP_CODE,TAM_CODE,TAM_NAMT,TAM_NAME,COORDINATES) ";
+        $sql = " REPLACE INTO tambon_gis (PROV_CODE,AMP_CODE,TAM_CODE,TAM_NAMT,TAM_NAME,COORDINATES) ";
         $sql.= " VALUES ('$prov','$amp','$tam','$namt','$name','$coord')";
 
         \Yii::$app->db->createCommand($sql)->execute();
@@ -20,8 +20,8 @@ class GisdataController extends Controller {
     }
 
     public function actionJsonRead() {
-        $this->overclock();
-        $data = file_get_contents('./gis/tambon/tambon.json');
+    //    $this->overclock();
+        $data = file_get_contents('tambon.json');
         $data = json_decode($data, TRUE);
         $total = count($data['features']);
 
